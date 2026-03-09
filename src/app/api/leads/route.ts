@@ -26,9 +26,16 @@ export async function POST(request: NextRequest) {
       console.error("Failed to send welcome email:", emailErr);
     }
 
-    // TODO: Store lead in database (Vercel Postgres) once provisioned
-    // For now, log the lead server-side
-    console.log("New lead:", { name: name.trim(), email: email.trim(), destination });
+    // Store lead in Google Sheet
+    try {
+      await fetch(process.env.GOOGLE_SHEET_WEBHOOK_URL!, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name.trim(), email: email.trim(), destination }),
+      });
+    } catch (sheetErr) {
+      console.error("Failed to write to Google Sheet:", sheetErr);
+    }
 
     return NextResponse.json({ success: true });
   } catch {
