@@ -55,10 +55,10 @@ export function LeadForm() {
       <div className="max-w-xl mx-auto px-6">
         <div className="bg-white rounded-2xl p-8 md:p-10 border border-border-light shadow-sm">
           <h2 className="text-2xl font-serif font-bold text-text mb-2 text-center">
-            Get Started
+            Stay in the Loop
           </h2>
           <p className="text-sm text-text-muted text-center mb-8">
-            Sign up to get notified about new destinations and certificate types.
+            Sign up to get notified about new features, certificate types, and destination updates.
           </p>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -71,7 +71,7 @@ export function LeadForm() {
                 onChange={(e) => setName(e.target.value)}
                 required
                 className="w-full px-3 py-2.5 border-[1.5px] border-border rounded-lg text-sm bg-white text-text outline-none transition-all focus:border-primary focus:ring-3 focus:ring-primary/10"
-                placeholder="Your name"
+                placeholder="Dr. Jane Smith"
               />
             </div>
             <div>
@@ -89,7 +89,7 @@ export function LeadForm() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-text mb-1">
-                Where are you traveling?
+                Most common destination
               </label>
               <select
                 value={destination}

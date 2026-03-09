@@ -8,8 +8,9 @@ export function Destinations() {
           Supported Destinations
         </h2>
         <p className="text-text-muted text-center mb-10 max-w-xl mx-auto">
-          Currently supporting all EU member states plus the UK and Norway under
-          the EN-ES 2019-1293 certificate.
+          Starting with EU member states, the UK, and Norway under the EN-ES
+          2019-1293 certificate. More destinations and certificate types coming
+          soon.
         </p>
         <div className="flex flex-wrap justify-center gap-2">
           {COUNTRIES_EU.map((c) => (
@@ -22,7 +23,7 @@ export function Destinations() {
           ))}
         </div>
         <p className="text-xs text-text-muted text-center mt-6">
-          More destinations coming soon. Sign up below to be notified.
+          More destinations and certificate types coming soon. Sign up below to be notified.
         </p>
       </div>
     </section>

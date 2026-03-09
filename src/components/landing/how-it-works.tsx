@@ -1,18 +1,18 @@
 const steps = [
   {
     num: "01",
-    title: "Answer Simple Questions",
-    desc: "Walk through a guided wizard covering owner info, travel details, pet identification, vaccination records, and vet details. Plain language — no regulatory jargon.",
+    title: "Enter Client & Patient Details",
+    desc: "You will fill out a simple, standardized form with owner info, travel details, and pet information. This information will be saved for frequent travelers to streamline the process in the future.",
   },
   {
     num: "02",
-    title: "We Handle the Rules",
-    desc: "The app checks date consistency, microchip numbers, tapeworm treatment windows, and all regulatory requirements. Country-specific rules are built in.",
+    title: "Certificate Populates Automatically",
+    desc: "VetExport Pro selects the right APHIS export certificate and fills it in for you.",
   },
   {
     num: "03",
-    title: "Download Your PDF",
-    desc: "Get a correctly completed EN-ES 2019-1293 certificate with all strikethroughs applied, ready for your vet's signature and APHIS endorsement.",
+    title: "Review, Sign & Submit",
+    desc: "Open the completed export certificate, verify the details, sign, and send to APHIS for endorsement.",
   },
 ];
 
@@ -24,7 +24,7 @@ export function HowItWorks() {
           How It Works
         </h2>
         <p className="text-text-muted text-center mb-12 max-w-xl mx-auto">
-          Three steps. No guesswork. No rejected certificates at the border.
+          Three steps. No guesswork. No rejected endorsements.
         </p>
         <div className="grid md:grid-cols-3 gap-8">
           {steps.map((s) => (

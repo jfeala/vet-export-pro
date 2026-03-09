@@ -4,28 +4,28 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "What is EN-ES 2019-1293?",
-    a: "It's the official USDA APHIS health certificate required for non-commercial movement of dogs, cats, and ferrets from the United States to EU member states, the UK, and Norway. It's a bilingual English/Spanish form.",
+    q: "Which certificates does VetExport Pro support?",
+    a: "We're starting with EN-ES 2019-1293, the USDA APHIS certificate for non-commercial movement of dogs, cats, and ferrets to the EU, UK, and Norway. We're actively adding support for more export certificate types and destinations.",
   },
   {
-    q: "Do I still need to visit a USDA-accredited veterinarian?",
-    a: "Yes. VetExport Pro fills out the certificate for you, but a USDA-accredited veterinarian must examine your pet, verify the information, and sign the certificate. The signed certificate then needs APHIS endorsement.",
+    q: "Who is VetExport Pro for?",
+    a: "VetExport Pro is built for USDA-accredited veterinarians who issue international health certificates. It collects patient and client travel information with simple input from you, then automatically populates the official certificate — so you just review and sign.",
   },
   {
-    q: "What is APHIS endorsement?",
-    a: "After your vet signs the certificate, it must be endorsed (counter-signed) by a USDA APHIS Veterinary Services office. This must happen within 10 days of your pet's arrival in the EU. VetExport Pro generates a certificate that's ready for this step.",
+    q: "How does it handle destination-specific requirements?",
+    a: "Different destinations have different rules — tapeworm treatment for UK and Finland, special declarations for young animals, varying vaccination timelines. VetExport Pro knows these rules and applies them automatically based on the destination you select.",
   },
   {
-    q: "Does my pet need a microchip?",
-    a: "Yes. All dogs, cats, and ferrets traveling to the EU must have an ISO 11784/11785 compliant microchip (15-digit). The microchip must be implanted before the rabies vaccination.",
+    q: "Does it handle the strikethroughs correctly?",
+    a: "Yes. One of the most error-prone parts of the EN-ES form is knowing which sections to strike through based on species, destination, and treatment history. VetExport Pro applies all strikethroughs automatically — no more guessing.",
   },
   {
-    q: "Is VetExport Pro free?",
-    a: "Yes, it's currently free to use. We may introduce paid features in the future for additional certificate types and premium support.",
+    q: "How much does VetExport Pro cost?",
+    a: "We offer affordable plans designed for veterinary practices. Sign up to learn more about pricing and get early access.",
   },
   {
-    q: "What about tapeworm treatment?",
-    a: "Tapeworm (Echinococcus) treatment is only required for dogs traveling to the UK, Ireland, Finland, Malta, and Norway. It must be administered by a veterinarian 1–5 days before arrival. The form handles this automatically based on your destination.",
+    q: "What about tapeworm treatment documentation?",
+    a: "Tapeworm (Echinococcus) treatment is only required for dogs traveling to the UK, Ireland, Finland, Malta, and Norway. It must be administered 1–5 days before arrival. The form prompts you for treatment details only when required by the destination.",
   },
 ];
 

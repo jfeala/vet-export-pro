@@ -1,19 +1,19 @@
 const benefits = [
   {
-    title: "Save Hours of Work",
-    desc: "No more cross-referencing the 8-page APHIS instruction sheet. The wizard knows which fields to fill and which sections to strike through.",
+    title: "Less Time Per Certificate",
+    desc: "Collect information once through a standard form, and the certificate populates itself. No more cross-referencing the 8-page APHIS instruction sheet — what used to take an hour takes minutes.",
   },
   {
-    title: "Avoid APHIS Rejection",
-    desc: "Incorrect certificates get rejected at endorsement. Our validation catches date errors, missing microchip fields, and wrong strikethrough patterns before you print.",
+    title: "Less Confusion, Fewer Rejections",
+    desc: "No more guessing which boxes to check or which sections to strike. Built-in validation catches date errors, missing microchip fields, and wrong strikethrough patterns before you print.",
   },
   {
-    title: "Country-Specific Rules",
-    desc: "Tapeworm treatment for UK and Finland? Declaration #2 for young pets? The form adapts automatically based on your destination and pet details.",
+    title: "Destination-Specific Rules Built In",
+    desc: "Each export certificate has its own requirements — treatment timelines, declarations, strikethrough patterns. The form adapts automatically so you don't have to memorize regulations for every destination.",
   },
   {
-    title: "Ready for Vet Signature",
-    desc: "Your vet receives a perfectly completed certificate — they just review, sign, and send to APHIS for endorsement. No corrections needed.",
+    title: "Less Stress, More Confidence",
+    desc: "Sign certificates knowing the correct strikethroughs and declarations have been applied. No more second-guessing yourself or worrying about endorsement rejections.",
   },
 ];
 
@@ -25,8 +25,7 @@ export function Benefits() {
           Why Use VetExport Pro?
         </h2>
         <p className="text-text-muted text-center mb-12 max-w-xl mx-auto">
-          International pet travel paperwork is notoriously error-prone. We fix
-          that.
+          Export health certificates shouldn&apos;t be the worst part of your day.
         </p>
         <div className="grid md:grid-cols-2 gap-6">
           {benefits.map((b) => (

@@ -13,8 +13,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-sm text-text-muted max-w-xs">
-              Simplifying USDA APHIS international health certificates for pet
-              travel.
+              Simplifying USDA APHIS export certificates for veterinarians.
             </p>
           </div>
           <div className="flex gap-10">

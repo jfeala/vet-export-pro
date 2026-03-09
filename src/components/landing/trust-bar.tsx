@@ -7,11 +7,9 @@ export function TrustBar() {
           compliant certificates
         </span>
         <span className="hidden md:inline text-border">|</span>
-        <span>EU 2019/1293 regulation</span>
+        <span>All export destinations</span>
         <span className="hidden md:inline text-border">|</span>
-        <span>30+ supported destinations</span>
-        <span className="hidden md:inline text-border">|</span>
-        <span>Free to use</span>
+        <span>Built for accredited veterinarians</span>
       </div>
     </section>
   );
