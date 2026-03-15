@@ -1,6 +1,29 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 
 export function Hero() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section className="bg-gradient-to-br from-primary-dark via-primary to-primary-light text-white">
       <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
@@ -17,20 +40,42 @@ export function Hero() {
           with the proper strikethroughs and formatting. You just review and
           sign.
         </p>
-        <div className="flex flex-wrap gap-4">
-          <Link
-            href="/certificate"
-            className="inline-block px-8 py-4 bg-white text-primary font-bold text-lg rounded-xl hover:bg-gray-50 transition-colors no-underline shadow-lg"
-          >
-            Get Started &rarr;
-          </Link>
-          <a
-            href="#how-it-works"
-            className="inline-block px-8 py-4 border-2 border-white/40 text-white font-semibold text-lg rounded-xl hover:bg-white/10 transition-colors no-underline"
-          >
-            See How It Works
-          </a>
-        </div>
+
+        {status === "success" ? (
+          <div className="max-w-md bg-white/15 backdrop-blur-sm rounded-xl px-6 py-4 border border-white/20">
+            <p className="text-white font-semibold">
+              You&apos;re on the list! Check your inbox for a welcome email.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-lg">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="you@clinic.com"
+              className="flex-1 px-5 py-4 rounded-xl border-none text-text text-base outline-none focus:ring-2 focus:ring-white/50"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="px-8 py-4 bg-white text-primary font-bold text-base rounded-xl hover:bg-gray-50 transition-colors border-none cursor-pointer shadow-lg disabled:opacity-60 whitespace-nowrap"
+            >
+              {status === "loading" ? "Joining..." : "Join the Waitlist"}
+            </button>
+          </form>
+        )}
+        {status === "error" && (
+          <p className="text-white/80 text-sm mt-3">Something went wrong. Please try again.</p>
+        )}
+
+        <a
+          href="#how-it-works"
+          className="inline-block mt-6 text-white/70 text-sm font-medium hover:text-white transition-colors no-underline"
+        >
+          See how it works &darr;
+        </a>
       </div>
     </section>
   );

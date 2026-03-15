@@ -1,0 +1,55 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String      @id @default(cuid())
+  email        String      @unique
+  name         String?
+  passwordHash String
+  role         String      @default("user")
+  onboardedAt  DateTime?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  vetProfile   VetProfile?
+  invite       Invite?     @relation("InvitedUser")
+}
+
+model VetProfile {
+  id                          String   @id @default(cuid())
+  userId                      String   @unique
+  user                        User     @relation(fields: [userId], references: [id])
+  hospitalName                String
+  hospitalAddress             String
+  accreditedVetName           String
+  nationalAccreditationNumber String
+  createdAt                   DateTime @default(now())
+  updatedAt                   DateTime @updatedAt
+}
+
+model Lead {
+  id          String   @id @default(cuid())
+  name        String   @default("")
+  email       String
+  destination String?
+  canContact  Boolean?
+  createdAt   DateTime @default(now())
+  inviteId    String?  @unique
+  invite      Invite?  @relation(fields: [inviteId], references: [id])
+}
+
+model Invite {
+  id         String    @id @default(cuid())
+  email      String    @unique
+  token      String    @unique @default(cuid())
+  invitedAt  DateTime  @default(now())
+  acceptedAt DateTime?
+  userId     String?   @unique
+  user       User?     @relation("InvitedUser", fields: [userId], references: [id])
+  lead       Lead?
+}

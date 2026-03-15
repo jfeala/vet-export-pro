@@ -1,7 +1,7 @@
 import { SendEmailCommand } from "@aws-sdk/client-ses";
 import { sesClient } from "./ses-client";
 
-const FROM_EMAIL = process.env.SES_FROM_EMAIL || "hello@vetexportpro.com";
+const FROM_EMAIL = process.env.SES_FROM_EMAIL || "lauren@vetexportpro.com";
 
 export async function sendEmail(
   to: string,
