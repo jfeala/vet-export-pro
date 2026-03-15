@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export async function POST(
   _request: Request,
@@ -42,7 +42,7 @@ export async function POST(
 
   const priceInCents = parseInt(process.env.STRIPE_PRICE_PER_CERTIFICATE || "4999", 10);
 
-  const paymentIntent = await stripe.paymentIntents.create({
+  const paymentIntent = await getStripe().paymentIntents.create({
     amount: priceInCents,
     currency: "usd",
     customer: user.stripeCustomerId,
