@@ -96,10 +96,10 @@ export function AdminDashboard({ leads, invites, users }: Props) {
             </Link>
           </div>
           <Link
-            href="/certificate"
+            href="/dashboard"
             className="text-sm text-white/80 hover:text-white no-underline"
           >
-            Certificates
+            Dashboard
           </Link>
         </div>
       </div>

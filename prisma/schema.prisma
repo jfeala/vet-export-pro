@@ -8,16 +8,19 @@ generator client {
 }
 
 model User {
-  id           String      @id @default(cuid())
-  email        String      @unique
-  name         String?
-  passwordHash String
-  role         String      @default("user")
-  onboardedAt  DateTime?
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  vetProfile   VetProfile?
-  invite       Invite?     @relation("InvitedUser")
+  id               String        @id @default(cuid())
+  email            String        @unique
+  name             String?
+  passwordHash     String
+  role             String        @default("user")
+  onboardedAt      DateTime?
+  stripeCustomerId String?       @unique
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  vetProfile       VetProfile?
+  invite           Invite?       @relation("InvitedUser")
+  clients          Client[]
+  certificates     Certificate[]
 }
 
 model VetProfile {
@@ -52,4 +55,67 @@ model Invite {
   userId     String?   @unique
   user       User?     @relation("InvitedUser", fields: [userId], references: [id])
   lead       Lead?
+}
+
+model Client {
+  id           String        @id @default(cuid())
+  userId       String
+  user         User          @relation(fields: [userId], references: [id])
+  name         String
+  phone        String?
+  addressUS    String?
+  addressEU    String?
+  postalCodeEU String?
+  phoneEU      String?
+  nameEU       String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  patients     Patient[]
+  certificates Certificate[]
+}
+
+model Patient {
+  id                   String               @id @default(cuid())
+  clientId             String
+  client               Client               @relation(fields: [clientId], references: [id])
+  species              String
+  breed                String?
+  name                 String?
+  sex                  String?
+  color                String?
+  dateOfBirth          String?
+  identificationNumber String?
+  identificationSystem String               @default("Transponder")
+  microchipImplantDate String?
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+  certificates         CertificatePatient[]
+}
+
+model Certificate {
+  id                    String               @id @default(cuid())
+  userId                String
+  user                  User                 @relation(fields: [userId], references: [id])
+  clientId              String?
+  client                Client?              @relation(fields: [clientId], references: [id])
+  status                String               @default("draft")
+  certificateType       String               @default("en-es-2019-1293")
+  destinationCountry    String?
+  departureDate         String?
+  formData              Json                 @default("{}")
+  stripePaymentIntentId String?
+  chargedAt             DateTime?
+  submittedAt           DateTime?
+  createdAt             DateTime             @default(now())
+  updatedAt             DateTime             @updatedAt
+  patients              CertificatePatient[]
+}
+
+model CertificatePatient {
+  certificateId String
+  certificate   Certificate @relation(fields: [certificateId], references: [id])
+  patientId     String
+  patient       Patient     @relation(fields: [patientId], references: [id])
+
+  @@id([certificateId, patientId])
 }

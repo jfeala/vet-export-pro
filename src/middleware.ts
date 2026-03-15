@@ -31,9 +31,12 @@ export async function middleware(request: NextRequest) {
 
   // Onboarding redirects
   if (pathname === "/onboarding" && token.onboardedAt) {
-    return NextResponse.redirect(new URL("/certificate", request.url));
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
-  if (pathname.startsWith("/certificate") && !token.onboardedAt) {
+  if (
+    (pathname.startsWith("/certificate") || pathname.startsWith("/dashboard")) &&
+    !token.onboardedAt
+  ) {
     return NextResponse.redirect(new URL("/onboarding", request.url));
   }
 

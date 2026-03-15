@@ -16,9 +16,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
-    await prisma.vetProfile.create({
-      data: {
+    await prisma.vetProfile.upsert({
+      where: { userId: session.user.id },
+      create: {
         userId: session.user.id,
+        hospitalName: hospitalName.trim(),
+        hospitalAddress: hospitalAddress.trim(),
+        accreditedVetName: accreditedVetName.trim(),
+        nationalAccreditationNumber: nationalAccreditationNumber.trim(),
+      },
+      update: {
         hospitalName: hospitalName.trim(),
         hospitalAddress: hospitalAddress.trim(),
         accreditedVetName: accreditedVetName.trim(),
@@ -26,12 +33,7 @@ export async function POST(request: Request) {
       },
     });
 
-    await prisma.user.update({
-      where: { id: session.user.id },
-      data: { onboardedAt: new Date() },
-    });
-
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, step: "payment" });
   } catch {
     return NextResponse.json({ error: "Failed to save profile" }, { status: 500 });
   }
